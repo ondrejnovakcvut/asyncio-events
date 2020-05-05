@@ -1,6 +1,6 @@
 Events-asyncio
 ~~~~~~~~~~~~~~
-This is a modification of original [Events library](https://github.com/pyeve/events) that adds support for asyncio.
+This is a modification of `Events library`_ that adds support for asyncio.
 Unlike the original library, this modification only supports Python 3.5+.
 
 ----
@@ -80,3 +80,4 @@ Based on Events library by `Nicola Iarocci`. Copyright (c) 2020.
 .. _LICENSE: https://github.com/pyeve/events/blob/master/LICENSE 
 .. _`Zoran Isailovski`: http://code.activestate.com/recipes/410686/
 .. _`Nicola Iarocci`: https://github.com/nicolaiarocci
+.. _`Events Library`: https://github.com/pyeve/events
