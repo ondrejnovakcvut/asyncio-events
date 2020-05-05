@@ -1,14 +1,2 @@
-Eve is written and maintained by Nicola Iarocci and various contributors:
-
-Development Lead
-````````````````
-
-- Nicola Iarocci <nicola@nicolaiarocci.com>
-
-Patches and Suggestions
-```````````````````````
-
-- Anfernee Jervis
-- Eric Smith
-- Evan Klitzke
-- Thomas Hanssen Nornes
+Asyncio modifications written by Ondrej Novak. Work is based on Events library written
+ and maintained by Nicola Iarocci and various contributors.

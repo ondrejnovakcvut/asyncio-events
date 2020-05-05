@@ -1,9 +1,7 @@
 Events-asyncio
-~~~~~~~~~~~~~~
+----
 This is a modification of `Events library`_ that adds support for asyncio.
 Unlike the original library, this modification only supports Python 3.5+.
-
-----
 
 The C# language provides a handy way to declare, subscribe to and fire events.
 Technically, an event is a "slot" where callback functions (event handlers) can
@@ -12,10 +10,10 @@ a handy package that encapsulates the core to event subscription and event
 firing and feels like a "natural" part of the language.
 
 .. code-block:: pycon
- 
+
     >>> async def something_changed(reason):
     ...     await some_awaitable()
-    ...     print "something changed because %s" % reason 
+    ...     print "something changed because %s" % reason
     ...
 
     >>> from events import Events
@@ -24,19 +22,19 @@ firing and feels like a "natural" part of the language.
 
 Multiple callback functions can subscribe to the same event. When the event is
 fired, all attached event handlers are invoked in sequence. To fire the event,
-perform a call on the slot: 
+perform a call on the slot:
 
 .. code-block:: pycon
 
     >>> await events.on_change('it had to happen')
     'something changed because it had to happen'
 
-By default, Events does not check if an event can be subscribed to and fired. 
+By default, Events does not check if an event can be subscribed to and fired.
 You can predefine events by subclassing Events and listing them. Attempts to
 subscribe to or fire an undefined event will raise an EventsException.
 
 .. code-block:: pycon
- 
+
     >>> class MyEvents(Events):
     ...     __events__ = ('on_this', 'on_that', )
 
@@ -70,14 +68,14 @@ Just run: ::
 
 License
 -------
-Events is BSD licensed. See the LICENSE_ for details.
+Asyncio-events is BSD licensed. See the LICENSE_ for details.
 
 
 Attribution
 -----------
-Based on Events library by `Nicola Iarocci`. Copyright (c) 2020.
+Based on Events library by `Nicola Iarocci`.
 
-.. _LICENSE: https://github.com/pyeve/events/blob/master/LICENSE 
+.. _LICENSE: https://github.com/pyeve/events/blob/master/LICENSE
 .. _`Zoran Isailovski`: http://code.activestate.com/recipes/410686/
 .. _`Nicola Iarocci`: https://github.com/nicolaiarocci
 .. _`Events Library`: https://github.com/pyeve/events
