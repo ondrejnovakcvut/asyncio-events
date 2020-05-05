@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import asyncio
 
 """
     Events
@@ -10,6 +11,7 @@
     http://code.activestate.com/recipes/410686/ - Copyright (c) 2005
 
     :copyright: (c) 2014-2017 by Nicola Iarocci.
+    :copyright: (c) 2020 by Ondrej Novak
     :license: BSD, see LICENSE for more details.
 """
 
@@ -91,8 +93,8 @@ class _EventSlot:
         return "event '%s'" % self.__name__
 
     def __call__(self, *a, **kw):
-        for f in tuple(self.targets):
-            f(*a, **kw)
+        tasks = [f(*a, **kw) for f in tuple(self.targets)]
+        return asyncio.gather(*tasks)
 
     def __iadd__(self, f):
         self.targets.append(f)

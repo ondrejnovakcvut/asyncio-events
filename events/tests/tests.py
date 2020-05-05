@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import asyncio
 import unittest
+import aiounittest
+from unittest.mock import MagicMock
 import events
 from events import Events, EventsException
 
@@ -141,3 +144,36 @@ class TestInstanceEvents(TestBase):
             pass
         else:
             self.fail("'EventsException' excpected and not raised.")
+
+
+class TestAsyncCall(aiounittest.AsyncTestCase):
+    _callback_no_args_mock: MagicMock
+    _callback_args_mock: MagicMock
+
+    def setUp(self) -> None:
+        self._callback_no_args_mock = MagicMock()
+        self._callback_args_mock = MagicMock()
+
+    async def test_call_no_args(self):
+        event_instance = Events()
+        event_instance.my_event += self.callback_no_args
+
+        await event_instance.my_event()
+
+        self._callback_no_args_mock.assert_called_once()
+
+    async def callback_no_args(self):
+        await asyncio.sleep(0.01)  # await something
+        return self._callback_no_args_mock()
+
+    async def test_call_args(self):
+        event_instance = Events()
+        event_instance.my_event += self.callback_args
+
+        await event_instance.my_event("first param", "second param", arg3="third param")
+
+        self._callback_args_mock.assert_called_once_with("first param", "second param", arg3="third param")
+
+    async def callback_args(self, *args, **kwargs):
+        await asyncio.sleep(0.01)  # await something
+        return self._callback_args_mock(*args, **kwargs)
